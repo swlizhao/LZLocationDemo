@@ -30,8 +30,6 @@
     self.geocoder = [[CLGeocoder alloc] init];
     BOOL locationServerEnable = [CLLocationManager locationServicesEnabled];
     CLAuthorizationStatus authorizationStatus =   [CLLocationManager authorizationStatus];
-//    NSLog(@"授权状态lz:%d",authorizationStatus);
-//    NSLog(@"locationServerEnable:%d",locationServerEnable);
     if ([self.lzLocationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.lzLocationManager requestAlwaysAuthorization];
     }
@@ -63,10 +61,8 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
     if (error.code == kCLErrorDenied) {
-        NSLog(@"位置服务被禁用");
         self.getLocationBlock(NO,@"", @"", @"", @"", @"", @"");
     }
-    NSLog(@"我被调用...");
 }
 
 - (void)reverseGeocoder:(CLLocationCoordinate2D)coordinate {
